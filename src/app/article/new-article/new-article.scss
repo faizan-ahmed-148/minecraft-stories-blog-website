@@ -1,0 +1,343 @@
+@use "../../_variable.scss"  as *;
+/* General Styling */
+.new-article-container {
+  background-color: $container-color; /* Dark background */
+  color: $text-color-light; /* White text */
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 80%;
+  margin: 2rem auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive Container */
+@media (max-width: 768px) {
+  .new-article-container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-article-container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+}
+
+/* Header */
+.new-article-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid $text-color-muted;
+  padding-bottom: 0.5rem;
+}
+
+.new-article-header h1 {
+  font-family: 'MinecraftBold';
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+  .new-article-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Form Container */
+.new-article-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Username Section */
+.new-article-username {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.new-article-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.new-article-username-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Title Input */
+.new-article-title {
+  background-color: $form-input-bg;
+  border: 1px solid $text-color-muted;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  color: $text-color-light;
+  font-size: 1.1rem;
+}
+
+.new-article-title::placeholder {
+  color: $text-color-light;
+}
+
+/* Rich Text Editor */
+.new-article-description {
+  border: 1px solid $text-color-muted;
+  border-radius: 5px;
+  color: $text-color-light;
+  height: 600px;
+  max-height: 600px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  resize: none;
+}
+
+.new-article-description::placeholder {
+  color: $text-color-light;
+}
+
+.new-article-description-quill {
+  height: 500px;
+  max-height: 500px;
+  color: $text-color-light;
+}
+
+/* Category, Tags, Keywords */
+.new-article-options {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.new-article-category,
+.new-article-tags,
+.new-article-keywords {
+  background-color: $form-input-bg;
+  border: 1px solid $text-color-muted;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: $text-color-light;
+  flex: 1;
+}
+
+.new-article-category::placeholder,
+.new-article-tags::placeholder,
+.new-article-keywords::placeholder {
+  color: $text-color-light;
+}
+
+/* Tags Input Field */
+.new-article-tags-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-input-field {
+  position: relative;
+}
+
+.tag-input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  background-color: $form-input-bg;
+  border: 1px solid $text-muted;
+  border-radius: 5px;
+  color: $text-color-light;
+}
+
+.tag-suggestions ul {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  border: 1px solid $text-color-muted;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: $text-color-muted;
+  list-style: none;
+  padding: 5px;
+}
+
+.tag-suggestions li {
+  padding: 5px;
+  cursor: pointer;
+  color: $yellow-color;
+}
+
+.tag-suggestions li:hover {
+  background-color: $background-muted;
+}
+
+.selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.tag-chip {
+  background-color: $background-muted;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  color: $yellow-color;
+}
+
+.tag-chip button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  margin-left: 5px;
+  cursor: pointer;
+  color: $yellow-color;
+}
+
+.tag-chip button:hover {
+  color: $text-color-light;
+}
+
+/* Image Upload Field */
+.new-article-image-upload {
+  margin-bottom: 1.5rem;
+}
+
+.new-article-image-upload input[type="file"] {
+  background-color: $form-input-bg;
+  border: 1px solid $text-color-muted;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: $text-color-light;
+  width: 100%;
+  cursor: pointer;
+}
+
+.new-article-image-upload input[type="file"]::file-selector-button {
+  cursor: pointer;
+}
+
+/* Meta Information */
+.new-article-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.new-article-meta input {
+  background-color: $form-input-bg;
+  border: 1px solid $text-color-muted;
+  padding: 0.8rem;
+  border-radius: 5px;
+  color: $text-color-light;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.new-article-meta input::placeholder {
+  color: $text-color-light;
+}
+
+/* Editors Pick */
+.new-article-editors-pick {
+  margin-bottom: 1.5rem;
+}
+
+.new-article-editors-pick label {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $text-color-light;
+}
+
+.new-article-editors-pick input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+/* Action Buttons */
+.new-article-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.new-article-btn-cancel,
+.new-article-btn-publish {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.new-article-btn-cancel img,
+.new-article-btn-publish img {
+  width: 120px;
+  height: 45px;
+}
+
+.new-article-btn-cancel:hover,
+.new-article-btn-publish:hover {
+  transform: scale(1.05);
+}
+
+.new-article-btn-cancel img {
+  filter: brightness(0.8) saturate(1.2);
+}
+
+.new-article-btn-publish img {
+  filter: brightness(1.1);
+}
+
+@media (max-width: 768px) {
+  .new-article-actions {
+    justify-content: center;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .new-article-avatar img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .new-article-title,
+  .new-article-category,
+  .new-article-tags,
+  .new-article-keywords {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  .new-article-toolbar {
+    gap: 0.3rem;
+  }
+
+  .new-article-btn-cancel img,
+  .new-article-btn-publish img {
+    width: 100px;
+    height: 35px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .new-article-description {
+    height: 630px !important;
+    max-height: 630px !important;
+  }
+}
+  @media only screen and (max-width: 430px) {
+    .new-article-description {
+      height: 680px !important;
+      max-height: 680px !important;
+    }
+}

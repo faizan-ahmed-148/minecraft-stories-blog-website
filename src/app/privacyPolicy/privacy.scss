@@ -1,0 +1,88 @@
+@use "../_variable.scss"  as *;
+.privacy-container {
+  font-family: "Minecraft", sans-serif;
+  color: $text_color_light; // White text color
+  padding: 20px;
+  line-height: 1.6;
+  min-height: 100vh; // Full-page height
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: $background_color !important; // Black background
+}
+
+.privacy-title {
+  font-family: "MinecraftBold";
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  // Responsive title font size
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.privacy-subtitle {
+  font-size: 1.5rem;
+  margin-top: -10px;
+  letter-spacing: 2px;
+  // Responsive subtitle font size
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
+}
+
+.privacy-section {
+  p {
+    margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      line-height: 1.4;
+    }
+  }
+
+  ul {
+    list-style-type: square;
+    margin-left: 20px;
+
+    @media (max-width: 768px) {
+      margin-left: 10px;
+    }
+  }
+
+  ul li {
+    margin-bottom: 5px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 3px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-title {
+    font-size: 1.8rem;
+  }
+
+  .privacy-subtitle {
+    font-size: 1rem;
+  }
+}

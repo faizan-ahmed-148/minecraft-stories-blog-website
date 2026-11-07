@@ -1,0 +1,1461 @@
+@use "../_variable.scss"  as *;
+
+@mixin genral-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@mixin grid-box {
+  display: grid;
+  grid-template-columns: 1fr 375px !important;
+  gap: 10px;
+}
+@mixin grid-box-full {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 10px;
+}
+/// Slide-in from the Right
+// Scroll-in from left
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Scroll-in from right
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Hover animation mixin
+@mixin hover-scale-shadow($scale: 1.05, $shadow-color: rgba(0, 0, 0, 0.2)) {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale($scale);
+    box-shadow: 0 4px 8px $shadow-color;
+  }
+}
+.slick-dots {
+  position: absolute;
+  bottom: -30px; // Adjust based on your slider design
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    margin: 0 8px; // Space between dots
+
+    button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc !important; // Default dot color
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: #ffcc00; // Highlight on hover
+        transform: scale(1.2); // Slight zoom effect
+      }
+
+      &.slick-active {
+        background-color: #ffcc00; // Active dot color
+        opacity: 1; // Ensure visibility for active dot
+        transform: scale(1.6); // Larger zoom for active state
+      }
+
+      // Remove ::before content if unnecessary
+      &::before {
+        content: none !important;
+      }
+    }
+  }
+}
+
+.featred-wrapper {
+  &.half {
+    @include grid-box;
+  }
+  &.full {
+    @include grid-box-full;
+  }
+  /* FeaturedPost Styling */
+  .FeaturedPost-container {
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    background-color: $container-color;
+    animation: slide-in-left 1s ease-out forwards;
+    overflow: hidden;
+
+    .FeaturedPost-title {
+      position: absolute;
+      top: -5px; // Adjust to move it above the slider
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto; // Ensure it doesn’t stretch unnecessarily
+      text-align: center;
+      font-family: "MinecraftBold", sans-serif;
+
+      z-index: 10;
+
+      button {
+        display: inline-block;
+        background-color: $featured_box_color; // Highlight color for the button
+        color: $text_color_light; // Text color
+        border-radius: 20px;
+        border: none; // Remove border for a cleaner look
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        text-shadow: 0 4px 0px $featured_box_color,
+          0 11px 31px $featured_box_color, 0 7px 7px $featured_box_color;
+        font-size: 3rem;
+        font-weight: 900;
+        background-color: transparent;
+
+        @media (max-width: 768px) {
+          font-size: 16px; // Adjust for smaller screens
+          padding: 6px 12px;
+        }
+      }
+    }
+    .FeaturedPost_con_views {
+      position: absolute;
+      top: 6px;
+      font-family: "MinecraftRegular";
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1px 9px;
+      border-radius: 12px;
+      color: $text_color_light;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      @media (max-width: 440px) {
+        top: 30px !important;
+        right: 3px;
+      }
+      span {
+        color: $featured_box_color;
+        /* Gold color for "Views:" text */
+        font-weight: normal;
+        /* Normal weight for contrast */
+      }
+    }
+
+    .FeaturedPost-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      .FeaturedPost-img-wrapper {
+        width: 100%;
+      }
+
+      .FeaturedPost-img {
+        width: 100% !important;
+        height: 550px;
+        object-fit: fill;
+        display: block;
+        border-radius: 12px 12px 0 0;
+        @media screen and (max-width: 1060px) {
+          height: auto !important;
+        object-fit: cover !important;
+        }
+      }
+
+      .FeaturedPost-info {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        font-family: "MinecraftRegular";
+        letter-spacing: 1.5px;
+      }
+
+      .FeaturedPost-user-avatar {
+        .FeaturedPost-user-img {
+          width: 88px;
+          height: 80px;
+          margin-right: 10px;
+          margin-top: 6px;
+          object-fit: contain;
+
+          @media (max-width: 480px) {
+            width: 60px !important;
+            height: 60px !important;
+          }
+        }
+      }
+
+      .FeaturedPost-meta {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        .FeaturedPost-description {
+          font-size: 1.2rem;
+          color: $text_color_light;
+          line-height: 1.6;
+          margin-bottom: 3px;
+
+          @media (max-width: 480px) {
+            font-size: 1rem !important;
+          }
+        }
+
+        .FeaturedPost-username,
+        .FeaturedPost-date {
+          font-size: 0.9rem;
+          color: $text_color_light;
+          text-transform: uppercase;
+          font-family: "MinecraftRegular";
+        }
+
+        .FeaturedPost-username {
+          font-weight: bold;
+          color: $text_color_light;
+        }
+
+        .FeaturedPost-date {
+          color: $text_color_light;
+        }
+      }
+    }
+  }
+
+  .promotion-box-con-news {
+    width: 100%;
+    background-color: $container-color;
+    animation: slide-in-right 1s ease-out forwards;
+    position: relative;
+    .promotion-box-activity-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+    // .FeaturedPost-container {
+    //   // padding: 1.5rem 0;
+    // }
+
+    .FeaturedPost-title {
+      font-size: 2rem;
+    }
+
+    .FeaturedPost-card {
+      margin-bottom: 1.5rem;
+      margin-top: -23px !important;
+
+      .FeaturedPost-info {
+        padding: 1rem;
+      }
+
+      .FeaturedPost-user-avatar {
+        margin-bottom: 0.5rem;
+
+        .FeaturedPost-user-img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+      .FeaturedPost-description {
+        font-size: 1rem;
+      }
+
+      .FeaturedPost-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+.blog-container {
+  margin: 20px;
+  h1{
+    margin: 10px auto;
+    text-align: center;
+    font-family: "MinecraftBold";
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $text_color_light;
+    letter-spacing: 1px;
+    font-size: 18px;
+  }
+  .featured-posts-con {
+    animation: slide-in-left 1s ease-out forwards;
+    margin-bottom: 24px;
+    margin: 15px 0;
+    position: relative;
+    min-height: 294px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 25px 10px 5px 10px;
+    background-color: $container-color;
+
+    .featured-posts-con-title {
+      display: flex;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 34px;
+      font-weight: bold;
+      color: $text_color_light;
+      margin: auto;
+      text-shadow: 0 4px 0px $featured_box_color,
+        0 11px 31px $featured_box_color, 0 7px 7px $featured_box_color;
+      font-family: "MinecraftBold";
+      letter-spacing: 1px;
+    }
+
+    .featured-posts-con-box {
+      margin: 0px 38px;
+      min-height: 170px;
+      position: relative;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-bottom: 10px;
+      scrollbar-width: none; // For Firefox
+      -ms-overflow-style: none; // For Internet Explorer and Edge
+
+      &::-webkit-scrollbar {
+        display: none; // For Chrome, Safari, and Opera
+      }
+    }
+
+    .featured-posts-con-info {
+      position: relative;
+      min-width: 250px;
+      max-width: 250px;
+      margin: 0 5px;
+      text-align: center;
+      overflow: visible;
+      font-family: "MinecraftBold";
+      letter-spacing: 1px;
+      /* Ensure the shadow is not clipped */
+
+      .featured-posts-con-img-wrapper {
+        position: relative;
+        padding: 5px;
+        /* Space around the image for shadow */
+        border: 2px solid $featured_box_color;
+        overflow: visible;
+        /* Prevent clipping */
+      }
+
+      .featured-posts-con-img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        display: block;
+        /* Match border-radius with wrapper */
+      }
+
+      .featured-posts-con-views {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1px 9px;
+        border-radius: 12px;
+        color: $text_color_light;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          color: $featured_box_color;
+          /* Gold color for "Views:" text */
+          font-weight: normal;
+          /* Normal weight for contrast */
+        }
+      }
+
+      .featured-posts-con-img-info {
+        font-size: 18px;
+        font-weight: 600;
+        padding: 1px 0;
+        color: $text_color_light;
+        display: -webkit-box;
+        /* Required for multi-line truncation */
+        -webkit-box-orient: vertical;
+        /* Required for multi-line truncation */
+        -webkit-line-clamp: 2;
+        /* Limits to 3 lines */
+        overflow: hidden;
+        /* Hides the overflowing text */
+        text-overflow: ellipsis;
+        /* Optional, adds an ellipsis */
+      }
+    }
+
+    .arrow {
+      position: absolute;
+      top: 57%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      color: $featured_box_color;
+      cursor: pointer;
+      z-index: 2;
+
+      &.left {
+        left: 7px;
+      }
+
+      &.right {
+        right: 7px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 1024px) {
+        top: 54% !important;
+      }
+    }
+  }
+
+  .hot-trending-posts {
+    animation: slide-in-left 1s ease-out forwards;
+
+    margin: 15px 0;
+    position: relative;
+    min-height: 294px;
+    width: 100%;
+    border-radius: 5px;
+    padding: 25px 10px 5px 10px;
+    background-color: $container-color;
+
+    .hot-trending-title {
+      display: flex;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 34px;
+      font-weight: bold;
+      color: $text_color_light;
+      margin: auto;
+      text-shadow: 0 4px 0px $hot_trending_post_box_color,
+        0 11px 31px $hot_trending_post_box_color,
+        0 7px 7px $hot_trending_post_box_color;
+      font-family: "MinecraftBold";
+      letter-spacing: 1px;
+    }
+
+    .hot-trending-box {
+      margin: 0px 38px;
+      min-height: 170px;
+      position: relative;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-bottom: 10px;
+      scrollbar-width: none; // For Firefox
+      -ms-overflow-style: none; // For Internet Explorer and Edge
+
+      &::-webkit-scrollbar {
+        display: none; // For Chrome, Safari, and Opera
+      }
+    }
+
+    .hot-trending-info {
+      position: relative;
+      min-width: 250px;
+      max-width: 250px;
+      margin: 0 5px;
+      text-align: center;
+      overflow: visible;
+      font-family: "MinecraftBold";
+      letter-spacing: 1px;
+      /* Ensure the shadow is not clipped */
+
+      .hot-post-img-wrapper {
+        position: relative;
+        padding: 5px;
+        /* Space around the image for shadow */
+        border: 2px solid $hot_trending_post_box_color;
+        overflow: visible;
+        /* Prevent clipping */
+      }
+
+      .hot-views {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 1px 9px;
+        border-radius: 12px;
+        color: $text_color_light;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        span {
+          color: $hot_trending_post_box_color;
+          /* Gold color for "Views:" text */
+          font-weight: normal;
+          /* Normal weight for contrast */
+        }
+      }
+
+      .hot-post-img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+        /* Match border-radius with wrapper */
+      }
+
+      .hot-post-img-info {
+        font-size: 18px;
+        font-weight: 600;
+        padding: 1px 0;
+        color: $text_color_light;
+        display: -webkit-box;
+        /* Required for multi-line truncation */
+        -webkit-box-orient: vertical;
+        /* Required for multi-line truncation */
+        -webkit-line-clamp: 2;
+        /* Limits to 3 lines */
+        overflow: hidden;
+        /* Hides the overflowing text */
+        text-overflow: ellipsis;
+        /* Optional, adds an ellipsis */
+      }
+    }
+
+    .arrow {
+      position: absolute;
+      top: 57%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      color: $hot_trending_post_box_color;
+      cursor: pointer;
+      z-index: 2;
+
+      &.left {
+        left: 7px;
+      }
+
+      &.right {
+        right: 7px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 1024px) {
+        top: 54% !important;
+      }
+    }
+  }
+
+  .editor-twitch {
+    animation: slide-in-right 1s ease-out forwards;
+
+    @include grid-box;
+    margin: 15px 0;
+
+    .editor-posts {
+      margin: 10px 0;
+      padding: 35px 41px 19px 41px;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: $container-color;
+
+      .editor-title {
+        display: flex;
+        justify-content: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 34px;
+        color: $text_color_light;
+        margin: auto;
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+        text-shadow: 0 4px 0px $editor_box_color, 0 11px 31px $editor_box_color,
+          0 7px 7px $editor_box_color;
+      }
+
+      .editor-box {
+        display: grid;
+        grid-auto-flow: column; // Ensure items are laid out in columns
+        grid-template-rows: 220px 220px; // Gap between items
+
+        width: 100%; // Full width of the container
+        overflow-x: auto; // Enable horizontal scrolling
+        overflow-y: hidden; // Disable vertical scrolling
+        scroll-snap-type: x mandatory; // Enable smooth snapping
+
+        // Hide scrollbars for a cleaner look
+        scrollbar-width: none; // Firefox
+        -ms-overflow-style: none; // IE and Edge
+
+        &::-webkit-scrollbar {
+          display: none; // Chrome, Safari, and Opera
+        }
+      }
+
+      .editor-info {
+        position: relative;
+        /* Ensures shadow is properly rendered */
+        min-width: 250px;
+        max-width: 250px;
+        margin: 0 5px;
+        text-align: center;
+        overflow: visible;
+        /* Make sure shadow is not cut off */
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+
+        .editor-post-img-wrapper {
+          position: relative;
+          overflow: visible;
+          padding: 4px;
+          border: 2px solid $editor_box_color;
+        }
+
+        .editor-post-img {
+          width: 100%;
+          height: 140px;
+          object-fit: cover;
+          display: block;
+          border-radius: 6px;
+          /* Match the border radius */
+        }
+
+        .editor-post-views {
+          position: absolute;
+          top: 7px;
+          right: 8px;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 1px 9px;
+          border-radius: 12px;
+          color: $text_color_light;
+          font-size: 14px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            color: $editor_box_color;
+            /* Gold color for "Views:" text */
+            font-weight: normal;
+            /* Normal weight for contrast */
+          }
+        }
+
+        .editor-post-img-info {
+          font-size: 18px;
+          font-weight: 600;
+          padding: 1px 0;
+          color: $text_color_light;
+          display: -webkit-box;
+          /* Required for multi-line truncation */
+          -webkit-box-orient: vertical;
+          /* Required for multi-line truncation */
+          -webkit-line-clamp: 2;
+          /* Limits to 3 lines */
+          overflow: hidden;
+          /* Hides the overflowing text */
+          text-overflow: ellipsis;
+          /* Optional, adds an ellipsis */
+        }
+      }
+
+      .editor-arrow {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        color: $hot_trending_post_box_color;
+        cursor: pointer;
+        z-index: 2;
+
+        &.left {
+          left: 7px;
+        }
+
+        &.right {
+          right: 7px;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        @media (max-width: 1024px) {
+          top: 51% !important;
+        }
+
+        @media (max-width: 420px) {
+          top: 49% !important;
+        }
+      }
+    }
+
+    .twitch-box {
+      padding: 35px 0px 5px 0px;
+      background-color: $container-color;
+      width: 100%;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      margin: auto;
+      overflow: hidden;
+      min-height: 96% !important;
+
+      .twitch-title {
+        display: flex;
+        justify-content: center;
+        font-size: 35px;
+        font-weight: bold;
+        color: $text_color_light;
+        margin: auto;
+        text-transform: uppercase;
+        text-shadow: 0 4px 0px $twitch_box_color, 0 11px 31px $twitch_box_color,
+          0 7px 7px $twitch_box_color;
+        font-family: "MinecraftBold";
+
+        // margin-bottom: 20px;
+      }
+
+      .streamer-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        max-height: 450px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: $twitch_box_color #e0e0e0;
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: $twitch_box_color;
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: transparent;
+        }
+
+        -ms-overflow-style: none;
+        scrollbar-width: thin;
+        -ms-overflow-style: none;
+      }
+
+      .streamer-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* background-color: #f7f7f7; */
+        padding: 5px 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .streamer-image {
+        width: 90px;
+        height: 90px;
+        //   border-radius: 50%;
+        border: 2px solid $twitch_box_color;
+        object-fit: cover;
+      }
+
+      .streamer-info {
+        flex: 1;
+        margin-left: 15px;
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+
+        .streamer-name {
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 900;
+          margin-bottom: 5px;
+          color: $text_color_light;
+        }
+
+        .streamer-desc {
+          font-size: 8.5px;
+          color: #8c8a8a;
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+
+        .watching {
+          font-size: 11px;
+          font-weight: bold;
+          color: rgb(253, 253, 253);
+          background-color: #ff1818;
+          padding: 2px 8px;
+          border-radius: 2px;
+        }
+      }
+
+      .live-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 5px;
+        font-weight: bold;
+
+        .live-dot {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background-color: #ff1818;
+        }
+
+        .offline-dot {
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background-color: #4e4e4e;
+        }
+      }
+
+      .live {
+        color: #ff1818 !important; // Red text for "LIVE"
+      }
+
+      // Explicit text color for offline
+      .offline {
+        color: #4e4e4e !important; // Gray text for "Offline"
+      }
+
+      .load-more-button {
+        display: flex;
+        justify-content: center;
+        color: $twitch_box_color;
+        text-decoration: underline;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .recent-activity {
+    @include grid-box;
+    margin: 15px 0;
+
+    .recent-posts {
+      animation: slide-in-left 1s ease-out forwards;
+
+      margin: 10px 0;
+      padding: 35px 41px 19px 41px;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: $container-color;
+
+      .recent-title {
+        font-weight: bold;
+        color: $text_color_light;
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        font-size: 34px;
+        text-transform: uppercase;
+        text-shadow: 0 4px 0px $recent_posts_box, 0 11px 31px $recent_posts_box,
+          0 7px 7px $recent_posts_box;
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+      }
+
+      .recent-box {
+        display: grid;
+        grid-auto-flow: column; // Ensure items are laid out in columns
+        grid-template-rows: 220px 220px; // Gap between items
+
+        width: 100%; // Full width of the container
+        overflow-x: auto; // Enable horizontal scrolling
+        overflow-y: hidden; // Disable vertical scrolling
+        scroll-snap-type: x mandatory; // Enable smooth snapping
+
+        // Hide scrollbars for a cleaner look
+        scrollbar-width: none; // Firefox
+        -ms-overflow-style: none; // IE and Edge
+
+        &::-webkit-scrollbar {
+          display: none; // Chrome, Safari, and Opera
+        }
+      }
+
+      .recent-info {
+        position: relative;
+        /* Ensures shadow is properly rendered */
+        min-width: 250px;
+        max-width: 250px;
+        margin: 0 5px;
+        text-align: center;
+        overflow: visible;
+        /* Make sure shadow is not cut off */
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+
+        .recent-post-img-wrapper {
+          position: relative;
+          overflow: visible;
+          padding: 4px;
+          border: 2px solid $recent_posts_box;
+        }
+
+        .recent-post-views {
+          position: absolute;
+          top: 7px;
+          right: 8px;
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 1px 9px;
+          border-radius: 12px;
+          color: $text_color_light;
+          font-size: 14px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          span {
+            color: $recent_posts_box;
+            /* Gold color for "Views:" text */
+            font-weight: normal;
+            /* Normal weight for contrast */
+          }
+        }
+
+        .recent-post-img {
+          width: 100%;
+          height: 140px;
+          object-fit: cover;
+          display: block;
+          border-radius: 6px;
+          /* Match the border radius */
+        }
+
+        .recent-post-img-info {
+          font-size: 18px;
+          font-weight: 600;
+          padding: 1px 0;
+          color: $text_color_light;
+          display: -webkit-box;
+          /* Required for multi-line truncation */
+          -webkit-box-orient: vertical;
+          /* Required for multi-line truncation */
+          -webkit-line-clamp: 2;
+          /* Limits to 3 lines */
+          overflow: hidden;
+          /* Hides the overflowing text */
+          text-overflow: ellipsis;
+          /* Optional, adds an ellipsis */
+        }
+      }
+
+      .recent-arrow {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 2;
+
+        &.left {
+          left: 7px;
+        }
+
+        &.right {
+          right: 7px;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        @media (max-width: 1024px) {
+          top: 51% !important;
+        }
+
+        @media (max-width: 420px) {
+          top: 49% !important;
+        }
+      }
+    }
+
+    .activity-box {
+      animation: slide-in-right 1s ease-out forwards;
+      padding: 35px 0px 5px 0px;
+      background-color: $container-color;
+      width: 100%;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      margin: auto;
+      overflow: hidden;
+      min-height: 96% !important;
+
+      .activity-title {
+        display: flex;
+        justify-content: center;
+        text-transform: uppercase;
+        text-shadow: 0 4px 0px $activity_box_color,
+          0 11px 31px $activity_box_color, 0 7px 7px $activity_box_color;
+        font-weight: bold;
+        color: $text_color_light;
+        margin: auto;
+        font-size: 34px;
+        font-family: "MinecraftBold";
+      }
+
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        /* Add these lines for vertical scrolling */
+        max-height: 450px;
+        /* Control how many items are visible (Adjust as needed) */
+        /* Control how many items are visible (Adjust as needed) */
+        overflow-y: auto;
+        /* Enable vertical scrolling */
+        scrollbar-width: thin;
+        /* Thin scrollbar for Firefox */
+        scrollbar-color: $activity_box_color #e0e0e0;
+        /* Thumb and track colors for Firefox */
+
+        /* WebKit browsers (Chrome, Safari, Edge) */
+        &::-webkit-scrollbar {
+          width: 6px;
+          /* Scrollbar width */
+          height: 6px;
+          /* Scrollbar height for horizontal scroll */
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $activity_box_color;
+          /* Scrollbar thumb color */
+          border-radius: 10px;
+          /* Rounded scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: transparent;
+          /* Completely transparent track */
+        }
+
+        -ms-overflow-style: none;
+        /* Disable scrollbar styling in older IE/Edge */
+        /* Enable vertical scrolling */
+        scrollbar-width: thin;
+        /* Thin scrollbar for Firefox */
+        -ms-overflow-style: none;
+
+        /* Disable scrollbar in IE/Edge */
+        .load-more-button {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          div {
+            display: flex;
+            justify-content: center;
+            background-color: $activity_box_color;
+            padding: 2px 10px;
+            margin: auto 0;
+            width: 30%;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+        }
+      }
+
+      .activity-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* background-color: #f7f7f7; */
+        padding: 5px 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .activity-image {
+        width: 90px;
+        height: 90px;
+        //   border-radius: 50%;
+        border: 2px solid $activity_box_color;
+        object-fit: cover;
+      }
+
+      .activity-info {
+        flex: 1;
+        margin-left: 15px;
+        font-family: "MinecraftBold";
+        letter-spacing: 1px;
+
+        .activity-name {
+          display: flex;
+          // font-size: 24px;
+          font-weight: bold;
+          color: $text_color_light;
+          margin: auto;
+        }
+
+        .activity-desc {
+          font-size: 10px;
+          color: #8c8a8a;
+          font-weight: 700;
+          margin-bottom: 5px;
+        }
+
+        .activity-min {
+          font-size: 11px;
+          font-weight: bold;
+          color: rgb(253, 253, 253);
+          background-color: #509e4a;
+          padding: 2px 8px;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+
+  .banner-promotion {
+    @include grid-box;
+    grid-template-columns: 1fr 250px; // Two columns: flexible first and fixed second
+  }
+
+  // Responsive styles
+
+  @media only screen and (max-width: 900px) {
+    .recent-activity,
+    .editor-twitch {
+      grid-template-columns: 1fr !important;
+    }
+
+    .featred-wrapper {
+      grid-template-columns: 1fr !important;
+    }
+
+    .editor-box,
+    .activity-box {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .hot-trending-title {
+    font-size: 1.8rem !important;
+
+  }
+
+  .featured-posts-con-title {
+    font-size: 1.8rem !important;
+
+  }
+
+  .editor-title {
+    font-size: 1.8rem !important;
+  }
+  .twitch-title{
+    font-size: 1.8rem !important;
+  }
+  .activity-title{
+    font-size: 1.8rem !important;
+  }
+  .recent-title{
+    font-size: 1.8rem !important;
+  }
+}
+@media (max-width: 490px) {
+  .hot-trending-title {
+    font-size: 1.5rem !important;
+
+  }
+
+  .featured-posts-con-title {
+    font-size: 1.5rem !important;
+
+  }
+
+  .editor-title {
+    font-size: 1.5rem !important;
+  }
+  .twitch-title{
+    font-size: 1.5rem !important;
+  }
+  .activity-title{
+    font-size: 1.5rem !important;
+  }
+  .recent-title{
+    font-size: 1.5rem !important;
+  }
+}
+.view-more-container {
+  top: 98%;
+  left: 50%;
+  width: 100%;
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: "MinecraftBold";
+  letter-spacing: 1px;
+
+  .view-more-button {
+    display: inline-block;
+    background-color: #ff4d4f;
+    padding: 2px 10px;
+    transform: translateY(-10px);
+    color: $text_color_light;
+    border-radius: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+.featured-posts-con-view-more-container {
+  top: 98%;
+  left: 50%;
+  width: 100%;
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: "MinecraftBold";
+  letter-spacing: 1px;
+
+  .view-more-button {
+    display: inline-block;
+    background-color: $featured_box_color;
+    padding: 2px 10px;
+    transform: translateY(-10px);
+    color: $text_color_light;
+    border-radius: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .view-more-button:hover {
+    transform: translateY(-15px);
+  }
+}
+
+.view-more-rec {
+  text-align: center;
+  margin-bottom: 3px;
+  font-family: "MinecraftBold";
+  letter-spacing: 1px;
+
+  .view-more-button {
+    display: inline-block;
+    background-color: $recent_posts_box;
+    padding: 2px 10px;
+    color: $text_color_light;
+
+    border-radius: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  :hover {
+    transform: translateY(-5px);
+  }
+}
+
+.view-more-edit {
+  text-align: center;
+  margin-bottom: 3px;
+  font-family: "MinecraftBold";
+  letter-spacing: 1px;
+
+  .view-more-button {
+    background-color: $editor_box_color;
+    padding: 2px 10px;
+    color: $text_color_light;
+    display: inline-block;
+    border-radius: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  :hover {
+    transform: translateY(-5px);
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin: 20px 0;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #ff4500;
+  /* Customize this color */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Add a pulse animation on hover for interactive elements
+@mixin pulse($scale: 1.1) {
+  @keyframes pulse-animation {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale($scale);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  animation: pulse-animation 0.6s ease-in-out;
+}
+
+@mixin bounce($height: 8px) {
+  @keyframes bounce-animation {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-$height);
+    }
+  }
+
+  animation: bounce-animation 1s infinite ease-in-out;
+}
+
+// Example for hover effect with bounce
+.hot-trending-info,
+.editor-info,
+.recent-info {
+  &:hover {
+    @include pulse(1.1); // Apply pulse animation on hover
+  }
+}
+
+@mixin slide-in($direction: left, $distance: 100px, $duration: 0.5s) {
+  animation: slideIn-$direction $duration ease-out;
+
+  @keyframes slideIn-left {
+    from {
+      transform: translateX(-$distance);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn-right {
+    from {
+      transform: translateX($distance);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+// Applying slide-in effect to hot-trending-posts or editor-posts
+.hot-trending-posts,
+.featured-posts-con,
+.editor-posts {
+  @include slide-in(left, 100px, 0.6s); // Slides in from the left
+}
+
+.recent-posts,
+.activity-box {
+  @include slide-in(right, 100px, 0.6s); // Slides in from the right
+}

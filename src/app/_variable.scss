@@ -1,0 +1,45 @@
+// Colors
+$primary-color: #1d1b1c; // Vibrant color for gaming accents
+$secondary-color: #0ff; // Secondary accent color
+$text-muted: #333; // Muted text for less important elements
+$dark-grey: #171717;
+$text-muted-500: #555;
+$yellow-color: #ffd700;
+$dark-green: #28a745;
+$dark-orange:#ff9800;
+$dark-red: #e74c3c;
+$dark: black;
+// Typography
+$font-family: 'Orbitron', sans-serif; // Gaming-inspired font
+$heading-font-size: 1.2rem; // Default heading size
+$form-input-bg: var(--form_input_bg);
+$featured_box_color: var(--featured_box_color);
+$hot_trending_post_box_color: var(--hot_trending_post_box_color);
+$editor_box_color: var(--editor_box_color);
+$twitch_box_color: var(--twitch_box_color);
+$recent_posts_box: var(--recent_posts_box);
+$activity_box_color: var(--activity_box_color);
+$text_color_light: var(--text_color_light);
+$text_color_dark: var(--text_color_dark);
+$container-color: var(--container_color);
+$background_color: var(--background_color);
+$background-muted: $text-muted;
+$box_shadow_color: var(--box_shadow_color);
+$text-color-muted: var(--text_color_muted);
+$text-color-muted-500: var(--text_color_muted_light);
+$background_button_color: var(--background_button_color);
+$background_button_hover_color: var(--background_button_hover_color);
+$header-background: var(--header_background);
+$card-background: var(--card_background);
+$list-views-text-color:  var(--list_views_text_color);
+$list-border-top: var(--list_border_top_color);
+$list-loader-color: var(--list_loader_color);
+
+// Responsive
+$breakpoint-sm: 576px; // Small devices
+$breakpoint-md: 768px; // Medium devices
+$breakpoint-lg: 992px; // Large devices
+$breakpoint-xl: 1200px; // Extra large devices
+
+// Margins and paddings
+$section-padding: 40px 0; // Default padding for sections

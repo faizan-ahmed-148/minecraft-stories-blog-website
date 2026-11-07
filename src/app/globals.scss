@@ -1,0 +1,184 @@
+
+@use "./_variable.scss"  as *;
+body{
+    padding: 0;
+    margin: 0;
+background-color: $background_color !important;
+
+}
+
+.hori_line {
+  text-align: center;
+
+  .horizon-line {
+    display: block;
+    width: 100%; // Make it span the container width
+    height: 26px !important; // Maintain aspect ratio
+    @media (max-width: 480px) {
+      width: 93% !important;
+      
+    }
+  }
+}
+/* CustomNotification.css */
+
+.custom-notification-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  max-width: 350px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-notification {
+  background-color: $background-muted;
+  color: $text_color_light;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px $box_shadow_color;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  min-width: 280px;
+}
+
+.notification-header {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-title {
+  font-size: 14px;
+  color: $text_color_light;
+}
+
+.notification-body {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.notification-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: $text_color_light;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.notification-close-btn:hover {
+  color: #ff4c4c;
+}
+@font-face {
+  font-family: 'MinecraftBold';
+  src: url('/fonts/MinecraftBold-nMK1.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MinecraftBoldItalic';
+  src: url('/fonts/MinecraftBoldItalic-1y1e.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MinecraftItalic';
+  src: url('/fonts/MinecraftItalic-R8Mo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MinecraftRegular';
+  src: url('/fonts/MinecraftRegular-Bmg3.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+    text-decoration: none !important;
+    list-style: none !important;
+    color: inherit;
+  }
+  
+
+
+.error-page {
+    text-align: center;
+    color: $text_color_light;
+    animation: glitch 1.5s infinite;
+    .error-container {
+      padding: 20px;
+      border: 2px solid #ff1e56;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 30, 86, 0.7);
+    }
+  
+    h1 {
+      font-size: 8rem;
+      margin: 0;
+      color: #ff1e56;
+      text-shadow: 3px 3px 0 #00e7ff, -3px -3px 0 #00e7ff;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: $text_color_light;
+    }
+  
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 30px;
+      background-color: #00e7ff;
+      border: none;
+      color: #0d0d0d;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #ff1e56;
+        color: $text_color_light;
+      }
+    }
+  }
+  
+  // Glitch Animation
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+      opacity: 1;
+    }
+    10% {
+      transform: translate(-5px, 5px);
+      opacity: 0.8;
+    }
+    20% {
+      transform: translate(5px, -5px);
+      opacity: 0.6;
+    }
+    30% {
+      transform: translate(-5px, 5px);
+      opacity: 0.8;
+    }
+    40% {
+      transform: translate(5px, -5px);
+      opacity: 0.6;
+    }
+  }
+
+
+

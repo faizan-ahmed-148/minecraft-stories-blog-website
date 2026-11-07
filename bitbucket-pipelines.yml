@@ -1,0 +1,17 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code yes.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:20.5.1
+
+pipelines:
+  branches:
+    main:
+    - step:
+        name: go live
+        caches:
+          - node
+        script:
+          - ssh ubuntu@135.148.136.151 /var/www/front.minecraftstories.gg/golive.sh pullnbuild
+          - ssh ubuntu@135.148.136.151 /var/www/front.minecraftstories.gg/golive.sh restartpm2

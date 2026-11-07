@@ -1,0 +1,569 @@
+@use "../_variable.scss"  as *;
+@mixin neon-border($border-color: #ff4d4f, $glow-color: rgba(255, 77, 79, 0.4)) {
+  // Define the border with a solid color
+  border: 2px solid $border-color;
+  
+  // Add a softer glowing box-shadow around the border
+  box-shadow: 
+    0 0 5px $border-color,               // Subtle border glow
+    0 0 5px $border-color,              // Stronger border glow
+    0 0 5px $glow-color;                // Soft glowing effect
+  
+  // Optionally, make the element stand out with a slight smooth transition
+  transition: box-shadow 0.3s ease-in-out;
+}
+.detail-con2-section-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  @media (max-width: 1024px) {
+  width: 100%;
+
+  }
+}
+.detail-recent-posts {
+  margin: 10px 0;
+  padding: 35px 41px 19px 41px;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: $container-color;
+
+  .detail-recent-title {
+    font-weight: bold;
+    color: $text_color_light;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-transform: uppercase;
+    text-shadow: 0 4px 0px $recent_posts_box, 0 11px 31px $recent_posts_box, 0 7px 7px $recent_posts_box;
+    font-family: "MinecraftBold";
+    letter-spacing: 1px;
+  }
+
+  .detail-recent-box {
+    display: grid;
+    grid-auto-flow: column; // Ensure items are laid out in columns
+    grid-template-rows: 220px 220px; // Gap between items
+
+    width: 100%; // Full width of the container
+    overflow-x: auto; // Enable horizontal scrolling
+    overflow-y: hidden; // Disable vertical scrolling
+    scroll-snap-type: x mandatory; // Enable smooth snapping
+
+    // Hide scrollbars for a cleaner look
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE and Edge
+
+    &::-webkit-scrollbar {
+       display: none; // Chrome, Safari, and Opera
+    }
+  }
+
+  .detail-recent-info {
+    position: relative;
+    /* Ensures shadow is properly rendered */
+    min-width: 250px;
+    max-width: 250px;
+    margin: 0 5px;
+    text-align: center;
+    overflow: visible;
+    /* Make sure shadow is not cut off */
+    font-family: "MinecraftBold";
+    letter-spacing: 1px;
+
+    .detail-recent-post-img-wrapper {
+      position: relative;
+      overflow: visible;
+      padding: 4px;
+      border: 2px solid $recent_posts_box;
+    }
+
+    .detail-recent-post-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      border-radius: 6px;
+    }
+
+    .detail-recent-post-img-info {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 1px 0;
+      color: $text_color_light;
+      display: -webkit-box;
+      /* Required for multi-line truncation */
+      -webkit-box-orient: vertical;
+      /* Required for multi-line truncation */
+      -webkit-line-clamp: 2;
+      /* Limits to 3 lines */
+      overflow: hidden;
+      /* Hides the overflowing text */
+      text-overflow: ellipsis;
+      /* Optional, adds an ellipsis */
+    }
+    }
+    .detail-recent-postt_con_views {
+      position: absolute;
+      top: 7px;
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1px 9px;
+      border-radius: 12px;
+      color: $text_color_light;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        color: #0d8de8; /* Gold color for "Views:" text */
+        font-weight: normal; /* Normal weight for contrast */
+      }
+    }
+    .detail-recent-arrow{
+      position: absolute;
+      top: 54%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 2;
+
+      &.left {
+        left: 7px;
+      }
+
+      &.right {
+        right: 7px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 1024px) {
+        top: 52% !important;
+      }
+
+      @media (max-width: 420px) {
+        top: 55% !important;
+      }
+  }
+
+  // Media Query for smaller screens (mobile)
+
+}
+
+.promotion-box-con-news {
+  width: 100%;
+  background-color: $container-color;
+  animation: slide-in-right 1s ease-out forwards;
+  position: relative;
+.promotion-box-activity-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
+
+
+.news-feed-twitch-box {
+  margin: 10px 0;
+  width: 100%;
+  max-height: 540px !important;
+  min-height: 540px !important;
+  background-color: $container-color;
+  // border: 1px solid $twitch_box_color;
+  // @include neon-border($twitch_box_color, #ad6aff); // Neon purple glow with softer effect
+
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  overflow: hidden;
+  .news-feed-twitch-title {
+    text-align: center;
+    margin-top: 21px;
+    font-size: 24px;
+    font-weight: bold;
+    color: $text_color_light;
+    // margin-bottom: 20px;
+  }
+
+  .news-feed-streamer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+
+    /* Add these lines for vertical scrolling */
+    max-height: 435px;
+    /* Control how many items are visible (Adjust as needed) */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: $twitch_box_color #e0e0e0; /* Thumb and track colors for Firefox */
+  
+    /* WebKit browsers (Chrome, Safari, Edge) */
+   
+  }
+
+  .news-feed-streamer-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #f7f7f7; */
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .news-feed-streamer-image {
+    width: 90px;
+    height: 90px;
+    //   border-radius: 50%;
+    border: 2px solid $twitch_box_color;
+    object-fit: cover;
+  }
+
+  .news-feed-streamer-info {
+    flex: 1;
+    margin-left: 15px;
+
+    .news-feed-streamer-name {
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 5px;
+      color: $text_color_light;
+
+    }
+
+    .news-feed-streamer-desc {
+      font-size: 11px;
+      color: #8c8a8a;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .news-feed-watching {
+      font-size: 11px;
+      font-weight: bold;
+      color: rgb(253, 253, 253);
+      background-color: #ff1818;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+  }
+
+  .news-feed-live-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5px;
+    font-weight: bold;
+
+    .news-feed-live-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background-color: #ff1818;
+    }
+    .news-feed-offline-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background-color: #4e4e4e;
+    }
+  }
+  .live {
+    color: #ff1818 !important; // Red text for "LIVE"
+  }
+
+  // Explicit text color for offline
+  .offline {
+    color: #4e4e4e !important; // Gray text for "Offline"
+  }
+  .news-feed-load-more-button {
+    display: flex;
+    justify-content: center;
+    color: #9c4ff9;
+    text-decoration: underline;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+}
+.news-feed-recent-box {
+  margin: 10px 0;
+  width: 100%;
+
+  max-height: 540px !important;
+  min-height: 540px !important;
+  background-color: $container-color;
+  // border: 1px solid $activity_box_color;
+  // @include neon-border($activity_box_color, $activity_box_color); // Neon brownish glow with softer effect
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  .news-feed-recent-title {
+    text-align: center;
+    margin-top: 21px;
+    font-size: 24px;
+    font-weight: bold;
+    color: $text_color_light;
+    // margin-bottom: 20px;
+  }
+  .news-feed-recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+
+    /* Add these lines for vertical scrolling */
+    max-height: 435px;
+    /* Control how many items are visible (Adjust as needed) */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: $editor_box_color #e0e0e0; /* Thumb and track colors for Firefox */
+  
+    /* WebKit browsers (Chrome, Safari, Edge) */
+    &::-webkit-scrollbar {
+      width: 6px; /* Scrollbar width */
+      height: 6px; /* Scrollbar height for horizontal scroll */
+    }
+  
+    &::-webkit-scroactivityllbar-thumb {
+      background-color: $editor_box_color; /* Scrollbar thumb color */
+      border-radius: 10px; /* Rounded scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* Completely transparent track */
+    }
+  
+    -ms-overflow-style: none; /* Disable scrollbar styling in older IE/Edge */
+    /* Enable vertical scrolling */
+    scrollbar-width: thin;
+    /* Thin scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Disable scrollbar in IE/Edge */
+
+   
+  }
+  .news-feed-load-more-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+   div{
+    display: flex;
+    justify-content: center;
+    background-color: $editor_box_color;
+    padding: 2px 10px;
+    margin: auto 0;
+    width: 30%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+   }
+  }
+  .news-feed-recent-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #f7f7f7; */
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .news-feed-recent-image {
+    width: 90px;
+    height: 90px;
+    //   border-radius: 50%;
+    border: 2px solid $editor_box_color;
+    object-fit: cover;
+  }
+
+  .news-feed-recent-info {
+    flex: 1;
+    margin-left: 15px;
+
+    .news-feed-recent-name {
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 5px;
+      color: $text_color_light;
+    }
+
+    .news-feed-recent-desc {
+      font-size: 13px;
+      color: #8c8a8a;
+      font-weight: 700;
+      margin-bottom: 0px;
+    }
+
+    .news-feed-recent-min {
+      font-size: 11px;
+      font-weight: bold;
+      color: rgb(253, 253, 253);
+      background-color: #509e4a;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+  }
+}
+.news-feed-activity-box {
+  margin: 10px 0;
+  width: 100%;
+
+  max-height: 540px !important;
+  min-height: 540px !important;
+  background-color: $container-color;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  .news-feed-activity-title {
+    text-align: center;
+    margin-top: 21px;
+    font-size: 24px;
+    font-weight: bold;
+    color: $text_color_light;
+    // margin-bottom: 20px;
+  }
+  .news-feed-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 5px;
+
+    /* Add these lines for vertical scrolling */
+    max-height: 435px;
+    /* Control how many items are visible (Adjust as needed) */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Thin scrollbar for Firefox */
+    scrollbar-color: $activity_box_color #e0e0e0; /* Thumb and track colors for Firefox */
+  
+    /* WebKit browsers (Chrome, Safari, Edge) */
+    &::-webkit-scrollbar {
+      width: 6px; /* Scrollbar width */
+      height: 6px; /* Scrollbar height for horizontal scroll */
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: $activity_box_color; /* Scrollbar thumb color */
+      border-radius: 10px; /* Rounded scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* Completely transparent track */
+    }
+  
+    -ms-overflow-style: none; /* Disable scrollbar styling in older IE/Edge */
+    /* Enable vertical scrolling */
+    scrollbar-width: thin;
+    /* Thin scrollbar for Firefox */
+    -ms-overflow-style: none;
+    /* Disable scrollbar in IE/Edge */
+
+   
+  }
+  .news-feed-load-more-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+   div{
+    display: flex;
+    justify-content: center;
+    background-color: $activity_box_color;
+    padding: 2px 10px;
+    margin: auto 0;
+    width: 30%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+   }
+  }
+  .news-feed-activity-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: #f7f7f7; */
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .news-feed-activity-image {
+    width: 90px;
+    height: 90px;
+    //   border-radius: 50%;
+    border: 2px solid $activity_box_color;
+    object-fit: cover;
+  }
+
+  .news-feed-activity-info {
+    flex: 1;
+    margin-left: 15px;
+
+    .news-feed-activity-name {
+      width: 100px;
+      font-size: 16px;
+      font-weight: bold;
+      color: rgb(253, 253, 253);
+      border-radius: 2px;
+    }
+
+    .news-feed-activity-desc {
+      font-size: 10px;
+      color: #8c8a8a;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .news-feed-activity-min {
+      font-size: 11px;
+      font-weight: bold;
+      color: rgb(253, 253, 253);
+      background-color: #509e4a;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .news-feed-activity-box{
+min-width: 100% !important;
+
+  }
+  .news-feed-recent-box{
+min-width: 100% !important;
+  }
+  .news-feed-twitch-box{
+    min-width: 100% !important;
+
+  }
+
+.detail-recent-posts {
+  margin: 10px 0px !important;
+}
+}

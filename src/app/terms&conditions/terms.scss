@@ -1,0 +1,108 @@
+@use "../_variable.scss"  as *;
+.terms-container {
+  color: $text_color_light; // White text color
+    padding: 20px;
+    line-height: 1.6;
+    min-height: 100vh; // Full-page height
+  
+    // Center content on smaller screens
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .terms-header {
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: $background_color !important; // Black background
+    // Adjust spacing and font size on smaller screens
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+    }
+  }
+  
+  .terms-title {
+    font-family: 'MinecraftBold';
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  
+    // Responsive title font size
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  .terms-subtitle {
+    font-size: 1.5rem;
+    margin-top: -10px;
+  letter-spacing: 2px;
+    // Responsive subtitle font size
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .terms-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px; // Add padding for smaller screens to prevent text from touching edges
+  
+    // Make content adjust on smaller screens
+    @media (max-width: 768px) {
+      padding: 0 10px;
+    }
+  }
+  
+  .terms-section {
+
+  
+ 
+  
+    p {
+      margin-bottom: 10px;
+  
+      // Adjust line spacing for better readability on smaller screens
+      @media (max-width: 768px) {
+        line-height: 1.4;
+      }
+    }
+  
+    ul {
+      list-style-type: square;
+      margin-left: 20px;
+  
+      // Adjust margins for smaller screens
+      @media (max-width: 768px) {
+        margin-left: 10px;
+      }
+    }
+  
+    ul li {
+      margin-bottom: 5px;
+  
+      // Adjust spacing for list items on smaller screens
+      @media (max-width: 768px) {
+        margin-bottom: 3px;
+      }
+    }
+  }
+  
+  // Adjust font sizes for very small devices
+  @media (max-width: 480px) {
+    .terms-title {
+      font-size: 1.5rem;
+    }
+  
+    .terms-subtitle {
+      font-size: 1rem;
+    }
+  
+    .terms-content {
+      padding: 0 5px;
+    }
+  
+
+  }
+  

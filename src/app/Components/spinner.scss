@@ -1,0 +1,47 @@
+.spinner-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* Adjust to fit your needs */
+  }
+  
+  .load-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Subtle outer border */
+    border-top: 4px solid #4caf50; /* Accent color for the animation (green) */
+    border-right: 4px solid #ff9800; /* Second accent color (orange) */
+    border-bottom: 4px solid #2196f3; /* Third accent color (blue) */
+    border-radius: 50%;
+    width: 50px; /* Slightly larger spinner */
+    height: 50px;
+    animation: spin 1.2s ease-in-out infinite; /* Smooth spin animation */
+  }
+  .hot-spinner-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust to fit your needs */
+  }
+  
+  .hot-load-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1); /* Subtle outer border */
+    border-top: 4px solid #4caf50; /* Accent color for the animation (green) */
+    border-right: 4px solid #ff9800; /* Second accent color (orange) */
+    border-bottom: 4px solid #2196f3; /* Third accent color (blue) */
+    border-radius: 50%;
+    width: 50px; /* Slightly larger spinner */
+    height: 50px;
+    animation: spin 1.2s ease-in-out infinite; /* Smooth spin animation */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

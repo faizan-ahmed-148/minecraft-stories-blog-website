@@ -1,0 +1,341 @@
+@use "../_variable.scss"  as *;
+.contact-container {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    color: $text_color_light;
+    font-family: 'Minecraftia', sans-serif;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Ensure full width */
+        height: 100%; /* Ensure full height */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),
+                    url('../../../public/assets/images/background.png') no-repeat center center;
+        background-size: cover;
+        filter: brightness(0.7) contrast(0.7);
+        z-index: -1;
+        opacity: 0.2;
+      }
+      
+}
+
+.contact-left-section {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+  
+    .contact-heading {
+        font-size: 3.5rem;
+        font-family: 'MinecraftBold';
+        font-weight: bold;
+        margin-bottom: -13px;
+
+    }
+
+    .contact-child-heading {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        //   margin-top: 0.5rem;
+    }
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 10; /* Ensure it's on top of other elements */
+    
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 0.1rem;
+            cursor: pointer;
+    
+            a {
+                color: $text_color_light;
+                font-size: 1.6rem;
+                transition: color 0.3s;
+                text-decoration: none; /* Ensure link styles are applied */
+    
+                &:hover {
+                    color: $background_button_color;
+                }
+            }
+    
+            p {
+                margin-top: 0.1rem;
+                font-size: 0.5rem;
+            }
+        }
+    }
+    
+}
+
+/* Divider Styling */
+.contact-divider-line {
+    width: 2px;
+    // background-color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.contact-right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+
+    .contact-right-heading {
+        width: 80%;
+        display: flex;
+        justify-content: start;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        font-family: 'MinecraftBold';
+        font-weight: bold;
+    }
+
+    form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: $container-color;
+        padding: 50px 10px;
+        width: 80%;
+        max-height: 500px;
+
+        .input-group-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+
+            .contact-input-group-1 {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin: 0 10px;
+
+                label {
+                    font-family: 'MinecraftRegular';
+                    letter-spacing: 1px;
+                    font-size: 0.9rem;
+                    margin-bottom: 0.3rem;
+                    color: $text_color_light;
+                }
+
+                input,
+                textarea {
+                    width: 100%;
+                    background-color: $text-color-muted;
+                    border: none;
+                    padding: 0.8rem;
+                    color: $text_color_light;
+                    margin-bottom: 1rem;
+                    font-size: 1rem;
+                    border-radius: 4px;
+                    transition: border 0.3s;
+
+                    &:focus {
+                        border: 2px solid $dark-green;
+                    }
+                }
+            }
+
+        }
+
+        .contact-input-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 10px;
+
+            label {
+                font-family: 'MinecraftRegular';
+                letter-spacing: 1px;
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+                color: $text_color_light;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                background-color: $text-color-muted;
+                border: none;
+                padding: 0.8rem;
+                color: $text_color_light;
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                border-radius: 4px;
+                transition: border 0.3s;
+
+                &:focus {
+                    border: 2px solid $dark-green;
+                }
+            }
+        }
+
+        .contact-text-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 10px;
+
+            label {
+                font-family: 'MinecraftRegular';
+                letter-spacing: 1px;
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+                color: $text_color_light;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                background-color: $text-color-muted;
+                border: none;
+                padding: 0.8rem;
+                color: $text_color_light;
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                border-radius: 4px;
+                transition: border 0.3s;
+
+                &:focus {
+                    border: 2px solid $dark-green;
+                }
+            }
+        }
+
+        .contact-btn-form {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                display: block;
+                margin: auto !important;
+                font-family: 'MinecraftRegular';
+                letter-spacing: 1px;
+                margin: auto !important;
+                background-color: $background_button_color;
+                border-radius: 10px;
+                border: none;
+                padding: 0.1rem 2rem;
+                color: $text_color_light;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                text-transform: uppercase;
+                width: 100%;
+                &:hover {
+                    scale: 1.01;
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width: 1200px) {
+    .contact-left-section .contact-heading {
+        font-size: 3rem;
+    }
+
+    .contact-right-section .contact-right-heading {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .contact-container {
+        padding: 30px 0;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .contact-divider-line {
+        display: none !important;
+        ;
+    }
+
+    .input-group-section {
+        flex-direction: column !important;
+
+        .contact-input-group-1 {
+            width: 95% !important;
+
+            input {
+                width: 100% !important;
+            }
+        }
+
+    }
+
+    .contact-left-section {
+        flex: 1;
+        height: 50vh;
+    }
+
+    .contact-right-section {
+        flex: 1;
+        padding: 1rem;
+    }
+
+    .contact-left-section .contact-heading {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-left-section {
+        background-position: top;
+    }
+
+    .contact-left-section .contact-heading {
+        margin-bottom: 0px !important;
+    }
+
+    .contact-right-section {
+        .contact-right-heading{
+            width: 100% !important;
+        }
+        form {
+            width: 100% !important;
+        }
+    }
+
+    form {
+        padding: 40px 8px;
+
+        .input-group-section .contact-input-group-1 {
+            width: 100%;
+            margin: 0;
+        }
+    }
+}
+
